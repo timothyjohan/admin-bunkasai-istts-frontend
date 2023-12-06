@@ -16,7 +16,6 @@ export default function Home() {
                 },
             }
         );
-        console.log(res.data.result.userdata);
     };
 
     useEffect(() => {
