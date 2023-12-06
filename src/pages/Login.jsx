@@ -1,7 +1,9 @@
-import { data } from "autoprefixer";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setUser } from "../app/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [load, setLoad] = useState(false);
@@ -14,20 +16,17 @@ export default function Login() {
         }, 0);
     }, []);
 
-    const name = async () => {
-        const res = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/user`
-            // data
-        );
-        console.log(res);
-    };
-
-    useEffect(() => {
-        name();
-    }, []);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = async (data) => {
-        console.log(data);
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_URL}/api/user`,
+            data
+        );
+        console.log(response.data.body.token);
+        dispatch(setUser(response.data.body.token));
+        navigate("/home");
     };
 
     return (
