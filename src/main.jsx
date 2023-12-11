@@ -21,15 +21,19 @@ const router = createBrowserRouter([
             {
                 path: "home",
                 element: <Home />,
-                children: [
-                    {
-                        path: "home",
-                        element: <Home />,
-                    },
-                ],
             },
         ],
     },
+    {
+        path: "/home",
+        element: <Template />,
+        children: [
+            {
+                path: "",
+                element: <Home />,
+            },
+        ],
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
