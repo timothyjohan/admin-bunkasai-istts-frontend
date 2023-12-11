@@ -7,18 +7,23 @@ export default function Navbar(){
             <div className="fixed w-full z-20">
                 <nav className="w-11/12 mx-auto p-2 mt-2 flex items-center justify-between ">
                     <div className="flex items-center">
-                        <img src="bunkasai-logo.png" className="w-20 h-20 object-contain mx-5" />
-                        {/* <img src="nippongo.png" className="w-20 h-20 object-contain" /> */}
+                        <img src="/bunkasai-logo.png" className="w-20 h-20 object-contain mx-5" />
                     </div>
                     <div className="flex items-center text-neutral-300">
-                        <Link to={"/"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                        <Link to={""} className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className=" ">HOME</button>
                         </Link>
-                        <Link to={"/tenant-conf"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
-                            <button className=" ">TENANT</button>
+                        <Link to={"tenants"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                            <button className=" ">TENANTS</button>
                         </Link>
-                        <Link to={"/competition-select"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
-                            <button className="">COMPETITION</button>
+                        <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                            <button className="">COMPETITIONS</button>
+                        </Link>
+                        <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                            <button className="">GALLERY</button>
+                        </Link>
+                        <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                            <button className="">FEEDBACKS</button>
                         </Link>
 
                         
