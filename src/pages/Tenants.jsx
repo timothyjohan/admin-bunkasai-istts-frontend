@@ -1,4 +1,19 @@
+import axios from "axios"
+import { useEffect } from "react"
+import { useState } from "react"
+import Tenant from "../components/Tenant"
+
 export default function Tenants(){
+    const [tenants, setTenants] = useState([])
+    const getTenants = async () =>{
+        const request = await axios.get(`${import.meta.env.VITE_API_URL}/api/tenants`)
+        setTenants(request.data)
+    }
+
+    useEffect(()=>{
+        getTenants()
+    },[])
+
     return(
         <>
             <div className="min-h-screen min-w-screen flex items-center justify-center text-neutral-200">
@@ -11,24 +26,16 @@ export default function Tenants(){
                                 <th className="border border-neutral-300 px-5">No Telp</th>
                                 <th className="border border-neutral-300 px-5">Alamat</th>
                                 <th className="border border-neutral-300 px-5">Status</th>
+                                <th className="border border-neutral-300 px-5">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="border border-neutral-300">
-                                <td className="border border-neutral-300 px-5">dummy 1 tenant</td>
-                                <td className="border border-neutral-300 px-5">dummy1</td>
-                                <td className="border border-neutral-300 px-5">0812931212</td>
-                                <td className="border border-neutral-300 px-5">jl. jalan dari dulu nugas kapan</td>
-                                <td className="border border-neutral-300 px-5">false</td>
-                            </tr>
+                            {
+                                tenants.map((element, key)=>{
+                                    return <Tenant key={key} {...element} />
+                                })
+                            }
 
-                            <tr className="border border-neutral-300">
-                                <td className="border border-neutral-300 px-5">dummy 2 tenant</td>
-                                <td className="border border-neutral-300 px-5">dummy2</td>
-                                <td className="border border-neutral-300 px-5">0812931212</td>
-                                <td className="border border-neutral-300 px-5">jl. jalan jalan jalan</td>
-                                <td className="border border-neutral-300 px-5">false</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
