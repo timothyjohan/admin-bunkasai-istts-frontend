@@ -8,6 +8,7 @@ import Template from "./Template.jsx";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import Home from "./pages/Home.jsx";
+import Tenants from "./pages/Tenants.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <Home />,
+            },
+            {
+                path: "tenants",
+                element: <Tenants />,
             },
         ],
     }
