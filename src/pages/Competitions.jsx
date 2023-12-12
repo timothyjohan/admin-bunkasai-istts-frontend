@@ -10,11 +10,11 @@ export default function Competitions(){
     return(
         <>
             <nav className="w-full h-44 fixed mt-44">
-                <div className="w-4/6 mx-auto text-neutral-200 grid grid-cols-5">
-                    <Link to={'/home/competitions/jsong'}>
+                <div className="w-4/6 mx-auto text-neutral-200 grid grid-cols-5 font-semibold text-xl">
+                    <Link to={'jsong'}>
                         <button className="hover:scale-110 transition-all">J-SONG</button>
                     </Link>
-                    <Link to={'/home/competitions/coswalk'}>
+                    <Link to={'coswalk'}>
                         <button className="hover:scale-110 transition-all">COSWALK</button>
                     </Link>
                 </div>
