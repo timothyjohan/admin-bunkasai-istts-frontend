@@ -20,12 +20,26 @@ export default function Login() {
     const navigate = useNavigate();
 
     const handleLogin = async (data) => {
+<<<<<<< Updated upstream
         const response = await axios.post(
             `${import.meta.env.VITE_API_URL}/api/user`,
             data
         );
         dispatch(setUser(response.data.body.token));
         navigate("/home");
+=======
+        try {
+            setError(null);
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/user`,
+                data
+            );
+            dispatch(setUser(response.data.body.token));
+            navigate("/home");
+        } catch (error) {
+            setError("Gagal Login");
+        }
+>>>>>>> Stashed changes
     };
 
     return (
@@ -60,7 +74,23 @@ export default function Login() {
                             placeholder="Password"
                             {...register("password")}
                         />
+<<<<<<< Updated upstream
                         <br />
+=======
+                        {error ? (
+                            <>
+                                <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-100">
+                                    <p> {error} </p>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-0 absolute">
+                                    <p> {error} </p>
+                                </div>
+                            </>
+                        )}
+>>>>>>> Stashed changes
                         <br />
                         {btnClick ? (
                             <button
