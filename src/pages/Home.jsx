@@ -1,31 +1,5 @@
-import { data } from "autoprefixer";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
 export default function Home() {
-    const user = useSelector((state) => state.user.user);
-    const navigate = useNavigate()
-    const loginadmin = async () => {
-        try {
-            const res = await axios.get(
-                `${import.meta.env.VITE_API_URL}/api/user`,
-                {
-                    headers: {
-                        "x-auth-token": user,
-                    },
-                }
-            );
-            
-        } catch (error) {
-            navigate('/err-unauthorized')
-        }
-    };
-
-    useEffect(() => {
-        loginadmin();
-    }, []);
+   
 
     return (
         <>
