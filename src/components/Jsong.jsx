@@ -11,6 +11,7 @@ export default function Jsong(props){
                 <td className="border border-neutral-300 px-5">{props.telp}</td>
                 <td className="border border-neutral-300 px-5">{props.lagu}</td>
                 <td className="border border-neutral-300 px-5">{status ? `Diterima` : `Pending`}</td>
+                <td className="border border-neutral-300 px-5"><button className={` my-2 px-3 rounded-lg ${status ? 'bg-violet-500 text-green-400' : 'bg-green-400 text-violet-500'}`}>Details</button></td>
             </tr>
         </>
     )

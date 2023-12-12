@@ -20,6 +20,7 @@ export default function Jsongs(){
                     <th className="border border-neutral-300 px-5">No Telp</th>
                     <th className="border border-neutral-300 px-5">Lagu</th>
                     <th className="border border-neutral-300 px-5">Status</th>
+                    <th className="border border-neutral-300 px-5">Action</th>
                 </tr>
             </thead>
 
@@ -27,7 +28,6 @@ export default function Jsongs(){
                 {
                     jsongs.map((element, key)=>{
                         return <Jsong key={key} {...element} />
-                        return <h1>aa</h1>
                     })
                 }
 
