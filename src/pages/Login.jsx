@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
     const [load, setLoad] = useState(false);
     const [btnClick, setBtnClick] = useState(null);
+    const [error, setError] = useState(null);
     const { register, handleSubmit, reset, formState } = useForm();
 
     useEffect(() => {
@@ -20,12 +21,19 @@ export default function Login() {
     const navigate = useNavigate();
 
     const handleLogin = async (data) => {
-        const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/user`,
-            data
-        );
-        dispatch(setUser(response.data.body.token));
-        navigate("/home");
+        try {
+            setError(null)
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/user`,
+                data
+                );
+            dispatch(setUser(response.data.body.token));
+            navigate("/home");
+            
+        } catch (error) {
+            setError('Gagal Login')
+        }
+            
     };
 
     return (
@@ -44,7 +52,7 @@ export default function Login() {
                         <input
                             type="username"
                             id="username"
-                            className="bg-neutral-600 w-96 py-2 px-5 rounded-lg my-1 mb-5"
+                            className="bg-neutral-700 w-96 py-2 px-5 rounded-lg my-1 mb-5"
                             placeholder="Username"
                             {...register("username")}
                         />
@@ -56,11 +64,25 @@ export default function Login() {
                         <input
                             type="password"
                             id="password"
-                            className="bg-neutral-600 w-96 py-2 px-5 rounded-lg my-1 mb-5"
+                            className="bg-neutral-700 w-96 py-2 px-5 rounded-lg my-1 mb-5"
                             placeholder="Password"
                             {...register("password")}
                         />
-                        <br />
+                        {
+                        error ? 
+                        <>
+                            <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-100">
+                            <p> {error} </p>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-0 absolute">
+                            <p> {error} </p>
+                            </div>
+                        </>
+                        
+                        }
                         <br />
                         {btnClick ? (
                             <button
