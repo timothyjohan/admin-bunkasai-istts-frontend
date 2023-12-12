@@ -7,10 +7,10 @@ export default function Unauthorized(){
                     <br />
                     <h1 className="font-bold text-2xl">You don't have permission to access this dirrectory page</h1>
                     <br />
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                    <Link to={"/"}>
                         <button className="bg-neutral-800 text-xl py-2 px-10 rounded-lg">Back</button>
 
-                    </a>
+                    </Link>
 
                 </div>
 
