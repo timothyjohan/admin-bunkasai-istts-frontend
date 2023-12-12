@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { setUser } from "../app/userSlice";
+
 
 export default function Navbar(){
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const logout = () =>{
+        dispatch(setUser(null));
+        navigate('/')
+    }
+
     
     return(
         <>
@@ -25,6 +35,9 @@ export default function Navbar(){
                         <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className="">FEEDBACKS</button>
                         </Link>
+                        <button onClick={logout} className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                            <button className="">LOGOUT</button>
+                        </button>
 
                         
                     </div>

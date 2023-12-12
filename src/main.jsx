@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 import Home from "./pages/Home.jsx";
 import Tenants from "./pages/Tenants.jsx";
+import Unauthorized from "./pages/Unauthorized.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,10 +22,11 @@ const router = createBrowserRouter([
                 element: <Login />,
             },
             {
-                path: "home",
-                element: <Home />,
+                path: "err-unauthorized",
+                element: <Unauthorized />,
             },
         ],
+        errorElement: <NotFound/>
     },
     {
         path: "/home",
