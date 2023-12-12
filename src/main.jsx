@@ -11,6 +11,7 @@ import Home from "./pages/Home.jsx";
 import Tenants from "./pages/Tenants.jsx";
 import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Competitions from "./pages/Competitions";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: "tenants",
                 element: <Tenants />,
+            },
+            {
+                path: "competitions",
+                element: <Competitions />,
             },
         ],
     }
