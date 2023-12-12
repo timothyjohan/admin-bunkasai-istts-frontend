@@ -24,7 +24,6 @@ export default function Login() {
             `${import.meta.env.VITE_API_URL}/api/user`,
             data
         );
-        console.log(response.data.body.token);
         dispatch(setUser(response.data.body.token));
         navigate("/home");
     };

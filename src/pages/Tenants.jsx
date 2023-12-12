@@ -2,8 +2,28 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useState } from "react"
 import Tenant from "../components/Tenant"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Tenants(){
+    const user = useSelector((state) => state.user.user);
+    const navigate = useNavigate()
+    const loginadmin = async () => {
+        try {
+            const res = await axios.get(
+                `${import.meta.env.VITE_API_URL}/api/user`,
+                {
+                    headers: {
+                        "x-auth-token": user,
+                    },
+                }
+            );
+            
+        } catch (error) {
+            navigate('/err-unauthorized')
+        }
+    };
+
     const [tenants, setTenants] = useState([])
     const getTenants = async () =>{
         const request = await axios.get(`${import.meta.env.VITE_API_URL}/api/tenants`)
@@ -12,6 +32,7 @@ export default function Tenants(){
 
     useEffect(()=>{
         getTenants()
+        loginadmin();
     },[])
 
     return(
