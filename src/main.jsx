@@ -16,6 +16,7 @@ import Jsong from "./pages/Jsongs";
 import Coswalks from "./pages/Coswalks.jsx";
 import JsongDetails from "./components/JsongDetails.jsx";
 import CoswalkDetails from "./components/CoswalkDetails.jsx";
+import GetFeedback from "./pages/GetFeedback.jsx";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
                         element: <Coswalks/>,
                     },
                 ]
+            },
+            {
+                path: "feedback",
+                element: <GetFeedback/>,
             },
             {
                 path: "competitions/jsong/:telp",
