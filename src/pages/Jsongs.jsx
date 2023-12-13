@@ -13,25 +13,26 @@ export default function Jsongs(){
     },[])
     return(
         <>
-            <thead>
-                <tr>
-                    <th className="border border-neutral-300 px-5">Nama Peserta</th>
-                    <th className="border border-neutral-300 px-5">Nama Panggung</th>
-                    <th className="border border-neutral-300 px-5">No Telp</th>
-                    <th className="border border-neutral-300 px-5">Lagu</th>
-                    <th className="border border-neutral-300 px-5">Status</th>
-                    <th className="border border-neutral-300 px-5">Action</th>
-                </tr>
-            </thead>
+            <table className="border-collapse border border-neutral-300 text-center text-lg ">
+                <thead>
+                    <tr>
+                        <th className="border border-neutral-300 px-5">Nama Peserta</th>
+                        <th className="border border-neutral-300 px-5">Nama Panggung</th>
+                        <th className="border border-neutral-300 px-5">No Telp</th>
+                        <th className="border border-neutral-300 px-5">Lagu</th>
+                        <th className="border border-neutral-300 px-5">Status</th>
+                        <th className="border border-neutral-300 px-5">Action</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {
-                    jsongs.map((element, key)=>{
-                        return <Jsong key={key} {...element} />
-                    })
-                }
-
-            </tbody>
+                <tbody>
+                    {
+                        jsongs.map((element, key)=>{
+                            return <Jsong key={key} {...element} />
+                        })
+                    }
+                </tbody>
+            </table>
         </>
     )
 }
