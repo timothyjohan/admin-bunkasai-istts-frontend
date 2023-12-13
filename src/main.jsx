@@ -13,6 +13,8 @@ import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Competitions from "./pages/Competitions";
 import Jsong from "./pages/Jsongs";
+import Coswalks from "./pages/Coswalks.jsx";
+import JsongDetails from "./components/JsongDetails.jsx";
 
 const router = createBrowserRouter([
     {
@@ -48,7 +50,15 @@ const router = createBrowserRouter([
                 children:[
                     {
                         path: "jsong",
-                        element: <Jsong/>
+                        element: <Jsong/>,
+                    },
+                    {
+                        path: "jsong/:telp",
+                        element: <JsongDetails/>,
+                    },
+                    {
+                        path: "coswalk",
+                        element: <Coswalks/>,
                     },
                 ]
             },

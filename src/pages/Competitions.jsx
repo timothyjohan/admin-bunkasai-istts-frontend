@@ -22,9 +22,7 @@ export default function Competitions(){
 
             <div className="min-h-screen min-w-screen flex items-center justify-center text-neutral-200">
                 <div className="bg-neutral-800 p-10 bg-opacity-75 rounded-xl">
-                    <table className="border-collapse border border-neutral-300 text-center text-lg ">
-                        <Outlet />
-                    </table>
+                    <Outlet />
                 </div>
             </div>
         </>
