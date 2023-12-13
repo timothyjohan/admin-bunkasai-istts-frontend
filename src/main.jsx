@@ -13,6 +13,7 @@ import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Competitions from "./pages/Competitions";
 import Jsong from "./pages/Jsongs";
+import GalleryPage from "./pages/GalleryPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
                         element: <Jsong/>
                     },
                 ]
+            },
+            {
+                path: "gallery",
+                element: <GalleryPage />,
             },
             
         ],
