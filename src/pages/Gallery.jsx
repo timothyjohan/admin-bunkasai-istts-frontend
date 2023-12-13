@@ -17,7 +17,7 @@ export default function Gallery(){
             {
             images.map((element, key)=>{
                 return(
-                    <GalleryImage key={key} {...element} />
+                    <GalleryImage getPhotos={getPhotos} key={key} {...element} />
                 )
             })
         }
