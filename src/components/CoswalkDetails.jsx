@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import ShowInstagram from './ShowInstagram';
 
 export default function CoswalkDetails(){
     const [coswalks, setCoswalks] = useState([])
@@ -35,7 +36,7 @@ export default function CoswalkDetails(){
                 <div className="bg-neutral-800 p-10 bg-opacity-75 rounded-xl">
                     <button className="mb-6 bg-neutral-700 py-1 px-5 text-md rounded-xl" onClick={goback}>Back</button>
                     <p className='text-xl'>Nama Peserta : {coswalks.nama_peserta}</p>
-                    <p className='text-xl'><a href={`https://www.instagram.com/${instagram}`} target="_blank">Instagram : {coswalks.instagram}</a></p>
+                    <ShowInstagram instagram={instagram}/>
                     <p className='text-xl'>Nama Panggung : {coswalks.nama_panggung}</p>
                     <p className='text-xl'>Image : <img src={coswalks.img} width={'200px'} height={'200px'} /></p>
                     <p className='text-xl'>Status : {status ? "Diterima": "Pending"}</p>
