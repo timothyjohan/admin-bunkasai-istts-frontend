@@ -7,12 +7,16 @@ export default function GalleryAdd(){
     const {register, handleSubmit, reset} = useForm()
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    const [btnClick, setBtnClick] = useState(false)
+
 
 
     const uploadImage = async data =>{
         setError(null)
         setSuccess(null)
         if(data.photo[0]){
+            setBtnClick(true);
+            
             try {
                 const formData = new FormData();
                 formData.append('photo', data.photo[0]);
@@ -22,6 +26,7 @@ export default function GalleryAdd(){
             } catch (error) {
                 setError(error.message)
             }
+            setBtnClick(false);
         }else{
             setError('File yang diupload kosong')
         }
@@ -69,7 +74,13 @@ export default function GalleryAdd(){
                         </div>
                         </>
                     }
-                    <button type="submit" className="bg-neutral-700 w-full py-2 rounded-xl ">Upload</button>
+                    {
+                        btnClick ?
+                        <button type="submit" disabled className="w-full py-2 rounded-xl font-bold transition-all text-violet-500 bg-green-400"><img src="/loading.png"className="h-6 mx-auto transition-all animate-spin" alt="" /></button>:
+
+                        <button type="submit" className="bg-neutral-700 w-full py-2 rounded-xl hover:bg-green-400 hover:scale-110 hover:text-violet-500 hover:font-bold transition-all">Upload</button>
+
+                    }
 
                 </form>
             </div>
