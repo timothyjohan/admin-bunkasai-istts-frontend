@@ -1,26 +1,41 @@
-import axios from "axios"
-import { useEffect } from "react"
-import { useState } from "react"
-import GalleryImage from "../components/GalleryImage"
-export default function Gallery(){
-    const [images, setImages] = useState([])
-    const getPhotos = async () =>{
-        const request = await axios.get(`${import.meta.env.VITE_API_URL}/api/gallery`)
-        setImages(request.data)
-    }
-    useEffect(()=>{
-        getPhotos()
-    },[])
+// Halaman `Gallery` menampilkan daftar gambar yang diunggah oleh pengguna
 
-    return(
+// Mengimpor modul yang diperlukan
+import axios from "axios";
+import { useEffect, useState } from "react";
+import GalleryImage from "../components/GalleryImage";
+
+// Mendefinisikan komponen `Gallery`
+export default function Gallery() {
+    // Mendefinisikan state lokal `images` dengan nilai awal array kosong
+    const [images, setImages] = useState([]);
+
+    // Mendefinisikan fungsi asinkron `getPhotos` untuk mendapatkan data gambar dari API
+    const getPhotos = async () => {
+        const request = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/gallery`
+        );
+        setImages(request.data);
+    };
+
+    // Menggunakan `useEffect` untuk memanggil `getPhotos` saat komponen dipasang
+    useEffect(() => {
+        getPhotos();
+    }, []);
+
+    // Mengembalikan JSX yang mendefinisikan tampilan komponen
+    return (
         <>
-            {
-            images.map((element, key)=>{
-                return(
-                    <GalleryImage getPhotos={getPhotos} key={key} {...element} />
-                )
-            })
-        }
+            {/* Menggunakan `map` untuk membuat komponen `GalleryImage` untuk setiap item dalam `images` */}
+            {images.map((element, key) => {
+                return (
+                    <GalleryImage
+                        getPhotos={getPhotos}
+                        key={key}
+                        {...element}
+                    />
+                );
+            })}
         </>
-    )
+    );
 }

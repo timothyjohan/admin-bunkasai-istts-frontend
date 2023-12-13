@@ -1,3 +1,4 @@
+// Mengimpor modul yang diperlukan
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -5,37 +6,43 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../app/userSlice";
 import { useNavigate } from "react-router-dom";
 
+// Mendefinisikan komponen `Login`
 export default function Login() {
+    // Mendefinisikan state lokal
     const [load, setLoad] = useState(false);
     const [btnClick, setBtnClick] = useState(null);
     const [error, setError] = useState(null);
+
+    // Menggunakan `useForm` untuk mengelola form
     const { register, handleSubmit, reset, formState } = useForm();
 
+    // Menggunakan `useEffect` untuk mengatur `load` menjadi `true` setelah waktu tertentu
     useEffect(() => {
         setTimeout(() => {
             setLoad(true);
         }, 0);
     }, []);
 
+    // Mendapatkan fungsi `dispatch` dari `useDispatch` dan `navigate` dari `useNavigate`
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // Mendefinisikan fungsi `handleLogin` untuk mengelola proses login
     const handleLogin = async (data) => {
         try {
-            setError(null)
+            setError(null);
             const response = await axios.post(
                 `${import.meta.env.VITE_API_URL}/api/user`,
                 data
-                );
+            );
             dispatch(setUser(response.data.body.token));
             navigate("/home");
-            
         } catch (error) {
-            setError('Gagal Login')
+            setError("Gagal Login");
         }
-            
     };
 
+    // Mengembalikan JSX yang mendefinisikan tampilan komponen
     return (
         <>
             <div className="h-screen flex items-center justify-center bg-repeat w-full">
@@ -68,21 +75,19 @@ export default function Login() {
                             placeholder="Password"
                             {...register("password")}
                         />
-                        {
-                        error ? 
-                        <>
-                            <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-100">
-                            <p> {error} </p>
-                            </div>
-                        </>
-                        :
-                        <>
-                            <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-0 absolute">
-                            <p> {error} </p>
-                            </div>
-                        </>
-                        
-                        }
+                        {error ? (
+                            <>
+                                <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-100">
+                                    <p> {error} </p>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="text-green-400 font-semibold py-2 px-4  rounded-xl bg-violet-500 transition duration-400 scale-0 absolute">
+                                    <p> {error} </p>
+                                </div>
+                            </>
+                        )}
                         <br />
                         {btnClick ? (
                             <button

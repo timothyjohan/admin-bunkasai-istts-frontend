@@ -1,20 +1,26 @@
-import axios from "axios"
-import { useEffect } from "react"
-import { useState } from "react"
-import { Link, Outlet } from "react-router-dom"
-import Tenant from "../components/Tenant"
+// Halaman untuk menampilkan daftar kompetisi
 
-export default function Competitions(){
+// Mengimpor modul yang diperlukan
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import Tenant from "../components/Tenant";
 
-    return(
+export default function Competitions() {
+    return (
         <>
             <nav className="w-full h-12 fixed mt-44">
                 <div className="w-4/6 mx-auto text-neutral-200 grid grid-cols-5 font-semibold text-xl">
-                    <Link to={'jsong'}>
-                        <button className="hover:scale-110 transition-all">J-SONG</button>
+                    <Link to={"jsong"}>
+                        <button className="hover:scale-110 transition-all">
+                            J-SONG
+                        </button>
                     </Link>
-                    <Link to={'coswalk'}>
-                        <button className="hover:scale-110 transition-all">COSWALK</button>
+                    <Link to={"coswalk"}>
+                        <button className="hover:scale-110 transition-all">
+                            COSWALK
+                        </button>
                     </Link>
                 </div>
             </nav>
@@ -25,5 +31,5 @@ export default function Competitions(){
                 </div>
             </div>
         </>
-    )
+    );
 }
