@@ -46,7 +46,7 @@ export default function JsongDetails(){
                     <p className='text-xl'>No Telpon : {jsongs.telp}</p>
                     <p className='text-xl'>Nama Panggung : {jsongs.nama_panggung}</p>
                     <p className='text-xl'>Lagu : {jsongs.lagu}</p>
-                    <p className='text-xl'>Link : {link ? <a href={jsongs.link} className='text-blue-800'>{jsongs.link}</a> : <label>{jsongs.link}</label>} </p>
+                    <p className='text-xl'>Link : {link ? <a href={jsongs.link} target="_blank" className='text-blue-800'>{jsongs.link}</a> : <label>{jsongs.link}</label>} </p>
                     <p className='text-xl'>Image : <img src={jsongs.img} width={'200px'} height={'200px'} /></p>
                     <p className='text-xl'>Status : {status ? "Diterima": "Pending"}</p>
                     <button className={`text-xl w-full my-2 px-3 py-1 rounded-lg ${status ? 'bg-green-400 text-violet-500' : 'bg-violet-500 text-green-400'}`} onClick={changeStatus}>{status ? 'Terima' : 'Pending'}</button>
