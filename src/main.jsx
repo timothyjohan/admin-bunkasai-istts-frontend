@@ -17,6 +17,9 @@ import Coswalks from "./pages/Coswalks.jsx";
 import JsongDetails from "./components/JsongDetails.jsx";
 import CoswalkDetails from "./components/CoswalkDetails.jsx";
 import GetFeedback from "./pages/GetFeedback.jsx";
+import GalleryPage from "./pages/GalleryPage.jsx";
+import GalleryAdd from "./pages/GalleryAdd";
+import Gallery from "./pages/Gallery";
 
 const router = createBrowserRouter([
     {
@@ -72,6 +75,21 @@ const router = createBrowserRouter([
                 path: "competitions/coswalk/:instagram",
                 element: <CoswalkDetails/>,
             },
+            {
+                path: "gallery",
+                element: <GalleryPage />,
+                children:[
+                    {
+                        path:'',
+                        element:<Gallery/>
+                    },
+                    {
+                        path:'add',
+                        element:<GalleryAdd/>
+                    },
+                ]
+            },
+            
         ],
     }
 ]);
