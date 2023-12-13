@@ -33,14 +33,19 @@ export default function CoswalkDetails(){
     return(
         <>
         <div className="min-h-screen min-w-screen flex items-center justify-center text-neutral-200">
-                <div className="bg-neutral-800 p-10 bg-opacity-75 rounded-xl">
+                <div className="bg-neutral-800 w-3/6 p-10 mt-20 my-20 bg-opacity-75 rounded-xl">
                     <button className="mb-6 bg-neutral-700 py-1 px-5 text-md rounded-xl" onClick={goback}>Back</button>
-                    <p className='text-xl'>Nama Peserta : {coswalks.nama_peserta}</p>
+                    <p className='text-2xl text-center'>{coswalks.nama_peserta} ({coswalks.nama_panggung})</p>
                     <ShowInstagram instagram={instagram}/>
-                    <p className='text-xl'>Nama Panggung : {coswalks.nama_panggung}</p>
-                    <p className='text-xl'>Image : <img src={coswalks.img} width={'200px'} height={'200px'} /></p>
+                    <div className='text-center'>
+                        <br />
+                        <p className='text-3xl'>Image
+                            <center><img src={coswalks.img} width={'470px'} height={'470px'}/></center>
+                        </p>
+                    </div>
+                    <br />
                     <p className='text-xl'>Status : {status ? "Diterima": "Pending"}</p>
-                    <button className={`text-xl w-full my-2 px-3 py-1 rounded-lg ${status ? 'bg-green-400 text-violet-500' : 'bg-violet-500 text-green-400'}`} onClick={changeStatus}>{status ? 'Terima' : 'Pending'}</button>
+                    <button className={`text-xl w-full my-2 px-3 py-1 rounded-lg ${status ? 'bg-violet-500 text-green-400' : 'bg-green-400 text-violet-500'}`} onClick={changeStatus}>{status ? 'Pending' : 'Terima'}</button>
                 </div>
             </div>
         </>
