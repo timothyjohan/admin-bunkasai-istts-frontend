@@ -6,10 +6,9 @@ import Tenant from "../components/Tenant"
 
 export default function Competitions(){
 
-
     return(
         <>
-            <nav className="w-full h-44 fixed mt-44">
+            <nav className="w-full h-12 fixed mt-44">
                 <div className="w-4/6 mx-auto text-neutral-200 grid grid-cols-5 font-semibold text-xl">
                     <Link to={'jsong'}>
                         <button className="hover:scale-110 transition-all">J-SONG</button>

@@ -35,7 +35,6 @@ export default function Tenants(){
                                     return <Tenant key={key} {...element} />
                                 })
                             }
-
                         </tbody>
                     </table>
                 </div>
