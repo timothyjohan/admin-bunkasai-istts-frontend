@@ -29,10 +29,10 @@ export default function Navbar(){
                         <Link to={"competitions/jsong"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className="">COMPETITIONS</button>
                         </Link>
-                        <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                        <Link to={""} className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className="">GALLERY</button>
                         </Link>
-                        <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                        <Link to={"feedback"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className="">FEEDBACKS</button>
                         </Link>
                         <button onClick={logout} className="mx-5 text-xl font-bold transition-all hover:scale-110">
