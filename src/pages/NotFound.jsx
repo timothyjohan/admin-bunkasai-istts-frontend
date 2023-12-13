@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function NotFound(){
     return(
         <>
@@ -7,10 +9,10 @@ export default function NotFound(){
                     <br />
                     <h1 className="font-bold text-2xl">dirrectory page does not exist, please make sure you type in the right dirrectory</h1>
                     <br />
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                    <Link to={"/"}>
                         <button className="bg-neutral-800 text-xl py-2 px-10 rounded-lg">Back</button>
 
-                    </a>
+                    </Link>
 
                 </div>
 

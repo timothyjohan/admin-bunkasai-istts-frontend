@@ -12,6 +12,7 @@ import Tenants from "./pages/Tenants.jsx";
 import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Competitions from "./pages/Competitions";
+import Jsong from "./pages/Jsongs";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,14 @@ const router = createBrowserRouter([
             {
                 path: "competitions",
                 element: <Competitions />,
+                children:[
+                    {
+                        path: "jsong",
+                        element: <Jsong/>
+                    },
+                ]
             },
+            
         ],
     }
 ]);

@@ -26,7 +26,7 @@ export default function Navbar(){
                         <Link to={"tenants"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className=" ">TENANTS</button>
                         </Link>
-                        <Link to={"competitions"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
+                        <Link to={"competitions/jsong"} className="mx-5 text-xl font-bold transition-all hover:scale-110">
                             <button className="">COMPETITIONS</button>
                         </Link>
                         <Link  className="mx-5 text-xl font-bold transition-all hover:scale-110">
