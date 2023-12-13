@@ -1,28 +1,16 @@
-import axios from "axios"
-import { useEffect } from "react"
-import { useState } from "react"
-import GalleryImage from "../components/GalleryImage"
-
+import { Link, Outlet } from "react-router-dom"
 export default function GalleryPage(){
-    const [images, setImages] = useState([])
-    const getPhotos = async () =>{
-        const request = await axios.get(`${import.meta.env.VITE_API_URL}/api/gallery`)
-        setImages(request.data)
-    }
-    useEffect(()=>{
-        getPhotos()
-    },[])
+
     return(
         <>
             <div className="pt-44 w-4/6 mx-auto text-neutral-200">
-                <h1 className="text-xl font-semibold">GALLERY</h1>
-                {
-                    images.map((element)=>{
-                        return(
-                            <GalleryImage {...element} />
-                        )
-                    })
-                }
+                <div className="flex justify-between">
+                    <h1 className="text-xl font-semibold">GALLERY</h1>
+                    <Link to={'add'}>
+                        <button className="bg-neutral-700 px-5 py-1 rounded-xl">Add Photo</button>
+                    </Link>
+                </div>
+                <Outlet />
             </div>
         </>
     )

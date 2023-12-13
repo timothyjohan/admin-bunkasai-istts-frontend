@@ -14,6 +14,8 @@ import NotFound from "./pages/NotFound.jsx";
 import Competitions from "./pages/Competitions";
 import Jsong from "./pages/Jsongs";
 import GalleryPage from "./pages/GalleryPage.jsx";
+import GalleryAdd from "./pages/GalleryAdd";
+import Gallery from "./pages/Gallery";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +58,16 @@ const router = createBrowserRouter([
             {
                 path: "gallery",
                 element: <GalleryPage />,
+                children:[
+                    {
+                        path:'',
+                        element:<Gallery/>
+                    },
+                    {
+                        path:'add',
+                        element:<GalleryAdd/>
+                    },
+                ]
             },
             
         ],
