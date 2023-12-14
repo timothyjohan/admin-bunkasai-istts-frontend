@@ -90,6 +90,7 @@ export default function CoswalkDetails() {
                                 : "bg-green-400 text-violet-500"
                         }`}
                         onClick={changeStatus}
+                        disabled={status}
                     >
                         {status ? "Pending" : "Terima"}
                     </button>
