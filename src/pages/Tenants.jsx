@@ -24,8 +24,10 @@ export default function Tenants() {
     // Mengembalikan JSX yang mendefinisikan tampilan komponen
     return (
         <>
+            
             <div className="min-h-screen min-w-screen flex items-center justify-center text-neutral-200">
                 <div className="bg-neutral-800 p-10 bg-opacity-75 rounded-xl">
+                    <h1 className="text-2xl font-bold mb-5">TENANTS</h1>
                     <table className="border-collapse border border-neutral-300 text-center text-lg">
                         <thead>
                             <tr>

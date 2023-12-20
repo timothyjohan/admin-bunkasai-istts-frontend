@@ -24,6 +24,7 @@ export default function Coswalks() {
     // Mengembalikan JSX yang mendefinisikan tampilan komponen
     return (
         <>
+            <h1 className="text-2xl font-bold mb-5">COSWALK</h1>
             {/* Membuat tabel untuk menampilkan data coswalk */}
             <table className="border-collapse border border-neutral-300 text-center text-lg ">
                 <thead>

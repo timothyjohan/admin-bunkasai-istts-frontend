@@ -24,6 +24,7 @@ export default function Jsongs() {
     // Mengembalikan JSX yang mendefinisikan tampilan komponen
     return (
         <>
+            <h1 className="text-2xl font-bold mb-5">J-SONG</h1>
             {/* Membuat tabel dengan border dan teks tengah */}
             <table className="border-collapse border border-neutral-300 text-center text-lg ">
                 <thead>

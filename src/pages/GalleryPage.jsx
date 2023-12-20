@@ -13,7 +13,7 @@ export default function GalleryPage() {
                 {/* Membuat div dengan layout flex dan justifikasi konten antara */}
                 <div className="flex justify-between">
                     {/* Membuat heading dengan teks "GALLERY" */}
-                    <h1 className="text-xl font-semibold">GALLERY</h1>
+                    <h1 className="text-2xl font-bold">GALLERY</h1>
                     {/* Membuat link ke halaman "add" */}
                     <Link to={"add"}>
                         {/* Membuat tombol dengan teks "Add Photo" */}
