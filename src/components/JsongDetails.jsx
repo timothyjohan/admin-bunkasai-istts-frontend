@@ -92,17 +92,24 @@ export default function JsongDetails() {
                     <p className="text-xl">
                         Status : {status ? "Diterima" : "Pending"}
                     </p>
-                    <button
+                    {
+                        status ? 
+                        
+                        null 
+                        :
+
+                        <button
                         className={`text-xl w-full my-2 px-3 py-1 rounded-lg ${
                             status
                                 ? "bg-violet-500 text-green-400"
                                 : "bg-green-400 text-violet-500"
                         }`}
                         onClick={changeStatus}
-                        disabled={status}
                     >
                         {status ? "Pending" : "Terima"}
                     </button>
+                    }
+                    
                 </div>
             </div>
         </>
