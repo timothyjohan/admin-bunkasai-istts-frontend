@@ -1,11 +1,9 @@
 // Halaman untuk menampilkan daftar kompetisi
 
 // Mengimpor modul yang diperlukan
-import axios from "axios";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import Tenant from "../components/Tenant";
+
 
 export default function Competitions() {
     return (

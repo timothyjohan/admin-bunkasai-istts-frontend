@@ -26,16 +26,19 @@ export default function Gallery() {
     // Mengembalikan JSX yang mendefinisikan tampilan komponen
     return (
         <>
-            {/* Menggunakan `map` untuk membuat komponen `GalleryImage` untuk setiap item dalam `images` */}
-            {images.map((element, key) => {
-                return (
-                    <GalleryImage
-                        getPhotos={getPhotos}
-                        key={key}
-                        {...element}
-                    />
-                );
-            })}
+            <div className="bg-neutral-800 p-8 my-10 mb-24 bg-opacity-75 rounded-xl w-5/6 mx-auto">
+                {/* Menggunakan `map` untuk membuat komponen `GalleryImage` untuk setiap item dalam `images` */}
+                {images.map((element, key) => {
+                    return (
+                        <GalleryImage
+                            getPhotos={getPhotos}
+                            key={key}
+                            {...element}
+                        />
+                    );
+                })}
+
+            </div>
         </>
     );
 }
