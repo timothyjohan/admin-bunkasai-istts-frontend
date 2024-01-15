@@ -7,7 +7,7 @@ import Tenant from "../components/Tenant";
 export default function Tenants() {
     // Mendefinisikan state lokal `tenants` dengan nilai awal array kosong
     const [tenants, setTenants] = useState([]);
-    const [update, setUpdate] = useState(true);
+    const [page, setPage] = useState(1);
     const [jumlah, setJumlah] = useState(0);
     // Mendefinisikan fungsi asinkron `getTenants` untuk mendapatkan data tenant dari API
     const getTenants = async () => {
@@ -15,6 +15,7 @@ export default function Tenants() {
             `${import.meta.env.VITE_API_URL}/api/tenants`
         );
         setTenants(request.data);
+        setPage(request.data.length)
     };
 
     // Mendefinisikan fungsi asinkron `changeStatus` untuk mengubah status tenant
@@ -40,15 +41,13 @@ export default function Tenants() {
         }
     }
     const next = ()=>{
-        if(tenants.length<jumlah+3){
+        if(tenants.length<=jumlah+3){
             setJumlah(tenants.length-3)
         }else{
             setJumlah(jumlah+3)
         }
     }
     
-    const page = 1;
-
     if(tenants!=''){
         for (let index = jumlah; index < jumlah+3; index++) {
             if(index<tenants.length){
@@ -126,7 +125,7 @@ export default function Tenants() {
                     </table>
                     <div className="mx-auto w-fit flex">
                         <button onClick={prev}>prev</button>
-                        <div className="w-80 text-center"></div>
+                        <div className="w-80 text-center">{(jumlah/3)+1}/{Math.ceil(page/3)}</div>
                         <button onClick={next}>next</button>
                     </div>
                 </div>
