@@ -46,7 +46,7 @@ export default function Coswalks() {
         for (let index = jumlah; index < jumlah+3; index++) {
             if(index<coswalks.length){
                 arr.push(
-                    <tr
+                    <tr key={coswalks[index].nama_panggung}
                         className={`border border-neutral-300 ${
                             coswalks[index].status
                                 ? "bg-green-400 text-violet-500"

@@ -45,7 +45,7 @@ export default function Jsongs() {
         for (let index = jumlah; index < jumlah+3; index++) {
             if(index<jsongs.length){
                 arr.push(
-                    <tr
+                    <tr key={jsongs[index].nama_panggung}
                         className={`border border-neutral-300 ${
                             jsongs[index].status
                                 ? "bg-green-400 text-violet-500"
