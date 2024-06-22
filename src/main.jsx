@@ -20,84 +20,84 @@ import GetFeedback from "./pages/GetFeedback.jsx";
 import GalleryPage from "./pages/GalleryPage.jsx";
 import GalleryAdd from "./pages/GalleryAdd";
 import Gallery from "./pages/Gallery";
+import Qr from "./pages/Qr.jsx";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <TemplateLogin />,
+  {
+    path: "/",
+    element: <TemplateLogin />,
+    children: [
+      {
+        path: "",
+        element: <Login />,
+      },
+      {
+        path: "err-unauthorized",
+        element: <Unauthorized />,
+      },
+    ],
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/home",
+    element: <Template />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "tenants",
+        element: <Tenants />,
+      },
+      {
+        path: "competitions",
+        element: <Competitions />,
         children: [
-            {
-                path: "",
-                element: <Login />,
-            },
-            {
-                path: "err-unauthorized",
-                element: <Unauthorized />,
-            },
+          {
+            path: "jsong",
+            element: <Jsong />,
+          },
+          {
+            path: "coswalk",
+            element: <Coswalks />,
+          },
         ],
-        errorElement: <NotFound/>
-    },
-    {
-        path: "/home",
-        element: <Template />,
+      },
+      {
+        path: "feedback",
+        element: <GetFeedback />,
+      },
+      {
+        path: "competitions/jsong/:telp",
+        element: <JsongDetails />,
+      },
+      {
+        path: "competitions/coswalk/:instagram",
+        element: <CoswalkDetails />,
+      },
+      {
+        path: "gallery",
+        element: <GalleryPage />,
         children: [
-            {
-                path: "",
-                element: <Home />,
-            },
-            {
-                path: "tenants",
-                element: <Tenants />,
-            },
-            {
-                path: "competitions",
-                element: <Competitions />,
-                children:[
-                    {
-                        path: "jsong",
-                        element: <Jsong/>,
-                    },
-                    {
-                        path: "coswalk",
-                        element: <Coswalks/>,
-                    },
-                ]
-            },
-            {
-                path: "feedback",
-                element: <GetFeedback/>,
-            },
-            {
-                path: "competitions/jsong/:telp",
-                element: <JsongDetails/>,
-            },
-            {
-                path: "competitions/coswalk/:instagram",
-                element: <CoswalkDetails/>,
-            },
-            {
-                path: "gallery",
-                element: <GalleryPage />,
-                children:[
-                    {
-                        path:'',
-                        element:<Gallery/>
-                    },
-                    {
-                        path:'add',
-                        element:<GalleryAdd/>
-                    },
-                ]
-            },
-            
+          {
+            path: "",
+            element: <Gallery />,
+          },
+          {
+            path: "add",
+            element: <GalleryAdd />,
+          },
         ],
-    }
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <RouterProvider router={router}></RouterProvider>
-        </Provider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
+  </React.StrictMode>
 );
