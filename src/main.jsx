@@ -92,6 +92,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/qr",
+    element: <Qr />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
