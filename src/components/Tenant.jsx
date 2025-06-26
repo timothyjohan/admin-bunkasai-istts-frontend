@@ -18,14 +18,8 @@ export default function Tenant(props) {
     // Mengembalikan JSX yang mendefinisikan tampilan komponen
     return (
         <>
-            {/* Membuat baris tabel dengan warna latar dan teks yang berbeda tergantung pada `status` */}
-            <tr
-                className={`border border-neutral-300 ${
-                    status
-                        ? "bg-green-400 text-violet-500"
-                        : "bg-violet-500 text-green-400"
-                }`}
-            >
+            {/* Membuat baris tabel tanpa warna latar dan teks berwarna putih */}
+            <tr className="border border-neutral-300 text-white">
                 {/* Membuat sel tabel untuk `nama_tenant`, `nama_cp`, `telp`, `alamat`, dan `status` */}
                 <td className="border border-neutral-300 px-5">
                     {props.nama_tenant}
@@ -44,10 +38,10 @@ export default function Tenant(props) {
                 <td className="border border-neutral-300 px-5">
                     <button
                         onClick={changeStatus}
-                        className={` my-2 px-3 rounded-lg ${
+                        className={`my-2 px-3 rounded-lg ${
                             status
-                                ? "bg-violet-500 text-green-400"
-                                : "bg-green-400 text-violet-500"
+                                ? "bg-violet-600 text-white"
+                                : "bg-green-600 text-white"
                         }`}
                     >
                         {status ? "Hold" : "Terima"}

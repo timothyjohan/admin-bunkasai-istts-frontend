@@ -5,16 +5,25 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Feedback from "../components/Feedback";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Mendefinisikan komponen `GetFeedback`
 export default function GetFeedback() {
     // Mendefinisikan state lokal `feedbacks` dengan nilai awal array kosong
     const [feedbacks, setFeedbacks] = useState([]);
 
+    // Menggunakan `useSelector` untuk mendapatkan `user` dari state Redux
+    const user = useSelector((state) => state.user.user);
+
     // Mendefinisikan fungsi asinkron `getFeedbacks` untuk mendapatkan data feedback dari API
     const getFeedbacks = async () => {
         const request = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/feedback`
+            `${import.meta.env.VITE_API_URL}/api/feedback`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
         );
         setFeedbacks(request.data);
     };

@@ -2,16 +2,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Jsong from "../components/Jsong";
+import { useSelector } from "react-redux";
 
 // Mendefinisikan komponen `Jsongs`
 export default function Jsongs() {
     // Mendefinisikan state lokal `jsongs` dengan nilai awal array kosong
     const [jsongs, setJsongs] = useState([]);
-
+    
+    // Menggunakan `useSelector` untuk mendapatkan `user` dari state Redux
+    const user = useSelector((state) => state.user.user);
+    
     // Mendefinisikan fungsi asinkron `getJsongs` untuk mendapatkan data jsong dari API
     const getJsongs = async () => {
+        const token = localStorage.getItem("token");
         const request = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/jsong`
+            `${import.meta.env.VITE_API_URL}/api/jsong`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
         );
         setJsongs(request.data);
     };

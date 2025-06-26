@@ -11,13 +11,7 @@ export default function Jsong(props) {
     return (
         <>
             {/* Membuat baris tabel dengan latar belakang dan warna teks yang berbeda tergantung pada `status` */}
-            <tr
-                className={`border border-neutral-300 ${
-                    status
-                        ? "bg-green-400 text-violet-500"
-                        : "bg-violet-500 text-green-400"
-                }`}
-            >
+            <tr className="border border-neutral-300 text-white">
                 {/* Membuat sel tabel untuk `nama_peserta`, `nama_panggung`, `telp`, dan `lagu` */}
                 <td className="border border-neutral-300 px-5">
                     {props.nama_peserta}
@@ -37,8 +31,8 @@ export default function Jsong(props) {
                         <button
                             className={` my-2 px-3 rounded-lg ${
                                 status
-                                    ? "bg-violet-500 text-green-400"
-                                    : "bg-green-400 text-violet-500"
+                                    ? "bg-violet-600 text-white"
+                                    : "bg-green-600 text-white"
                             }`}
                         >
                             Details

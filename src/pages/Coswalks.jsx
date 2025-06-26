@@ -2,16 +2,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Coswalk from "../components/Coswalk";
+import { useSelector } from "react-redux";
 
 // Mendefinisikan komponen `Coswalks`
 export default function Coswalks() {
     // Mendefinisikan state lokal `coswalks` dengan nilai awal array kosong
     const [coswalks, setCoswalks] = useState([]);
 
+    // Menggunakan `useSelector` untuk mendapatkan `user` dari state Redux
+    const user = useSelector((state) => state.user.user);
+
     // Mendefinisikan fungsi asinkron `getCoswalk` untuk mendapatkan data coswalk dari API
     const getCoswalk = async () => {
         const request = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/coswalk`
+            `${import.meta.env.VITE_API_URL}/api/coswalk`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
         );
         setCoswalks(request.data);
     };

@@ -7,6 +7,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Mendefinisikan komponen `JsongDetails`
 export default function JsongDetails() {
@@ -16,6 +17,10 @@ export default function JsongDetails() {
     const [jsongs, setJsongs] = useState([]);
     const [status, setStatus] = useState();
     const [link, setLink] = useState();
+    const [buktiTransfer, setBuktiTransfer] = useState();
+
+    // Menggunakan `useSelector` untuk mendapatkan `user` dari state Redux
+    const user = useSelector((state) => state.user.user);
 
     // Mendefinisikan fungsi asinkron `getJsongs` untuk mendapatkan detail jsong
     const getJsongs = async () => {
@@ -23,12 +28,33 @@ export default function JsongDetails() {
         const request = await axios.get(
             `${import.meta.env.VITE_API_URL}/api/jsong/${
                 pathname[pathname.length - 1]
-            }`
+            }`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
         );
         // Memperbarui state lokal dengan data yang diterima dari API
         setJsongs(request.data);
         setStatus(request.data.status);
         setLink(request.data.link);
+
+        // Mengambil bukti transfer menggunakan email dari data jsong
+        getBuktiTransfer(request.data.email);
+    };
+
+    const getBuktiTransfer = async (email) => {
+        const request = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/transfer-proof/getTransferProof/${email}/jsong`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
+        );
+        // Memperbarui state lokal dengan data bukti transfer
+        setBuktiTransfer(request.data.filePath);
     };
 
     // Menggunakan useEffect untuk memanggil `getJsongs` saat komponen dimuat
@@ -81,7 +107,7 @@ export default function JsongDetails() {
                             Image
                             <center>
                                 <img
-                                    src={jsongs.img}
+                                    src={`${import.meta.env.VITE_API_URL}/${buktiTransfer}`}
                                     width={"400px"}
                                     height={"300px"}
                                 />
