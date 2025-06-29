@@ -8,12 +8,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ShowInstagram from "./ShowInstagram";
+import { useSelector } from "react-redux";
 
 export default function CoswalkDetails() {
     // Mendefinisikan state lokal dengan hook `useState`
     const [coswalks, setCoswalks] = useState([]);
     const [status, setStatus] = useState();
     const [instagram, setInstagram] = useState();
+    const [buktiTransfer, setBuktiTransfer] = useState();
+
+    // Menggunakan `useSelector` untuk mendapatkan `user` dari state Redux
+    const user = useSelector((state) => state.user.user);
 
     // Mendapatkan pathname dari URL saat ini
     const pathname = window.location.pathname.split("/");
@@ -23,17 +28,38 @@ export default function CoswalkDetails() {
         const request = await axios.get(
             `${import.meta.env.VITE_API_URL}/api/coswalk/${
                 pathname[pathname.length - 1]
-            }`
+            }`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
         );
         setCoswalks(request.data);
         setStatus(request.data.status);
         setInstagram(request.data.instagram.substring(1));
+
+        // Mengambil bukti transfer menggunakan email dari data coswalk
+        getBuktiTransfer(request.data.email);
+    };
+
+    const getBuktiTransfer = async (email) => {
+        const request = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/transfer-proof/getTransferProof/${email}/coswalk`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
+        );
+        // Memperbarui state lokal dengan data bukti transfer
+        setBuktiTransfer(request.data.filePath);
     };
 
     // Menggunakan hook `useEffect` untuk memanggil `getCoswalks` saat komponen dimuat
     useEffect(() => {
         getCoswalks();
-    });
+    }, []);
 
     // Mendefinisikan fungsi asinkron `changeStatus` untuk mengubah status coswalk di API
     const changeStatus = async () => {
@@ -72,7 +98,7 @@ export default function CoswalkDetails() {
                             Image
                             <center>
                                 <img
-                                    src={coswalks.img}
+                                    src={`${import.meta.env.VITE_API_URL}/${buktiTransfer}`}
                                     width={"470px"}
                                     height={"470px"}
                                 />

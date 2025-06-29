@@ -32,7 +32,7 @@ export default function Login() {
         try {
             setError(null);
             const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/api/user`,
+                `${import.meta.env.VITE_API_URL}/api/user/admin/login`,
                 data
             );
             dispatch(setUser(response.data.body.token));
@@ -52,16 +52,16 @@ export default function Login() {
                             Admin Log in
                         </h1>
                         <br />
-                        <label htmlFor="username" className="px-2 ">
-                            Username
+                        <label htmlFor="email" className="px-2 ">
+                            Email
                         </label>
                         <br />
                         <input
-                            type="username"
-                            id="username"
+                            type="email"
+                            id="email"
                             className="bg-neutral-700 w-96 py-2 px-5 rounded-lg my-1 mb-5"
-                            placeholder="Username"
-                            {...register("username")}
+                            placeholder="Email"
+                            {...register("email")}
                         />
                         <br />
                         <label htmlFor="password" className="px-2 ">

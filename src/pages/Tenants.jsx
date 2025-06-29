@@ -2,16 +2,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Tenant from "../components/Tenant";
+import { useSelector } from "react-redux";
 
 // Mendefinisikan komponen `Tenants`
 export default function Tenants() {
     // Mendefinisikan state lokal `tenants` dengan nilai awal array kosong
     const [tenants, setTenants] = useState([]);
 
+    // Menggunakan `useSelector` untuk mendapatkan `user` dari state Redux
+    const user = useSelector((state) => state.user.user);
+
     // Mendefinisikan fungsi asinkron `getTenants` untuk mendapatkan data tenant dari API
     const getTenants = async () => {
         const request = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/tenants`
+            `${import.meta.env.VITE_API_URL}/api/tenants`,
+            {
+                headers: {
+                    "x-auth-token": user,
+                },
+            }
         );
         setTenants(request.data);
     };
