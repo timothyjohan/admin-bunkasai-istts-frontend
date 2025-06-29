@@ -21,6 +21,7 @@ import GalleryPage from "./pages/GalleryPage.jsx";
 import GalleryAdd from "./pages/GalleryAdd";
 import Gallery from "./pages/Gallery";
 import Qr from "./pages/Qr.jsx";
+import TicketsPage from "./pages/TicketsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "tickets",
+        element: <TicketsPage />,
+      }
     ],
   },
   {

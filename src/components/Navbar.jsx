@@ -56,11 +56,17 @@ export default function Navbar() {
                             <button className="">GALLERY</button>
                         </Link>
                         <Link
+                            to={"tickets"}
+                            className="mx-5 text-xl font-bold transition-all hover:scale-110"
+                        >
+                            <button className="">TICKETS</button>
+                        </Link>
+                        {/* <Link
                             to={"feedback"}
                             className="mx-5 text-xl font-bold transition-all hover:scale-110"
                         >
                             <button className="">FEEDBACKS</button>
-                        </Link>
+                        </Link> */}
                         {/* Membuat tombol logout */}
                         <button
                             onClick={logout}
