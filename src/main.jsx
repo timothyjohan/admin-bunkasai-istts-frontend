@@ -24,6 +24,8 @@ import Qr from "./pages/Qr.jsx";
 import TicketsPage from "./pages/TicketsPage.jsx";
 import Yonkomas from "./pages/Yonkoma.jsx";
 import YonkomaDetails from "./components/YonkomaDetails.jsx";
+import CosplayCompetitions from "./pages/CosplayCompetitions.jsx";
+import CosplayCompetitionDetails from "./components/CosplayCompetitionDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +71,10 @@ const router = createBrowserRouter([
             path: "yonkoma",
             element: <Yonkomas />,
           },
+          {
+            path: "cosplay-competition",
+            element: <CosplayCompetitions />,
+          },
         ],
       },
       {
@@ -82,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "competitions/yonkoma/:telp",
         element: <YonkomaDetails />,
+      },
+      {
+        path: "competitions/cosplay-competition/:telp",
+        element: <CosplayCompetitionDetails />,
       },
       {
         path: "competitions/coswalk/:instagram",
