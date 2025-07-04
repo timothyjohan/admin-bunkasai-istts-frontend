@@ -9,7 +9,8 @@ export default function Competitions() {
     return (
         <>
             <nav className="w-full h-12 absolute mt-44">
-                <div className="w-4/6 mx-auto text-neutral-200 grid grid-cols-5 font-semibold text-xl">
+                {/* Updated grid to have 4 columns for even spacing */}
+                <div className="w-4/6 mx-auto text-neutral-200 grid grid-cols-4 font-semibold text-xl text-center">
                     <Link to={"jsong"}>
                         <button className="hover:scale-110 transition-all">
                             J-SONG
@@ -18,6 +19,18 @@ export default function Competitions() {
                     <Link to={"coswalk"}>
                         <button className="hover:scale-110 transition-all">
                             COSWALK
+                        </button>
+                    </Link>
+                    {/* Added link for Yonkoma */}
+                    <Link to={"yonkoma"}>
+                        <button className="hover:scale-110 transition-all">
+                            YONKOMA
+                        </button>
+                    </Link>
+                    {/* Added link for Cosplay Competition */}
+                    <Link to={"cosplay-competition"}>
+                        <button className="hover:scale-110 transition-all">
+                            COSPLAY COMP
                         </button>
                     </Link>
                 </div>

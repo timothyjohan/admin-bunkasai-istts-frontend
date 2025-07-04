@@ -22,6 +22,8 @@ import GalleryAdd from "./pages/GalleryAdd";
 import Gallery from "./pages/Gallery";
 import Qr from "./pages/Qr.jsx";
 import TicketsPage from "./pages/TicketsPage.jsx";
+import Yonkomas from "./pages/Yonkoma.jsx";
+import YonkomaDetails from "./components/YonkomaDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
             path: "coswalk",
             element: <Coswalks />,
           },
+          {
+            path: "yonkoma",
+            element: <Yonkomas />,
+          },
         ],
       },
       {
@@ -72,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "competitions/jsong/:telp",
         element: <JsongDetails />,
+      },
+      {
+        path: "competitions/yonkoma/:telp",
+        element: <YonkomaDetails />,
       },
       {
         path: "competitions/coswalk/:instagram",
