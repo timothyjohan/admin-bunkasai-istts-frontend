@@ -57,6 +57,27 @@ export default function UserDetail() {
 
     const goback = () => navigate(-1);
 
+    const addTicket = async () => {
+        if (!window.confirm("Apakah Anda yakin ingin menambahkan tiket untuk pengguna ini?")) return;
+        try {
+            const name = user.name
+            setLoading(true);
+            setError(null);
+            const API_BASE_URL = import.meta.env.VITE_API_URL;
+            const headers = { "x-auth-token": userToken };
+            await axios.post(`${API_BASE_URL}/api/ticket/admin/new`, { email, name }, { headers });
+            // Refresh data setelah berhasil menambah tiket
+            const response = await axios.get(`${API_BASE_URL}/api/user/details-ticket?email=${email}`, { headers });
+            const { user: userData, tickets: ticketsData = [] } = response.data;
+            setUser(userData);
+            setTickets(ticketsData);
+        } catch (err) {
+            setError("Gagal menambah tiket.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     if (loading) {
         return <div className="text-center text-neutral-400">Memuat data detail pengguna...</div>;
     }
@@ -67,18 +88,21 @@ export default function UserDetail() {
 
     return (
         <div className="min-h-screen min-w-screen flex items-center justify-center text-neutral-200">
-            <div className="flex flex-col items-center w-full">
-                
+            <div className="flex flex-col items-center w-full mt-24">
                 <div className="w-full max-w-4xl mx-auto bg-neutral-800/80 p-8 rounded-xl shadow-lg">
-                <button onClick={goback} className="self-start mb-6 bg-neutral-700 py-1 px-5 text-md rounded-xl hover:bg-neutral-600 transition-all">
-                    Back
-                </button>
+                    <div className="flex justify-between mb-6">
+                        <button onClick={goback} className="bg-neutral-700 py-1 px-5 text-md rounded-xl hover:bg-neutral-600 transition-all">
+                            Back
+                        </button>
+                        <button onClick={addTicket} className="bg-neutral-700 py-1 px-5 text-md rounded-xl hover:bg-neutral-600 transition-all">
+                            Add Ticket
+                        </button>
+                    </div>
                     <h1 className="text-3xl font-bold text-center mb-2 text-yellow-400">Detail Pengguna</h1>
                     <p className="text-center text-lg mb-2 text-neutral-300">{user?.name}</p>
                     <p className="text-center text-md mb-2 text-neutral-400">{user?.email}</p>
                     <p className="text-center text-md mb-8 text-neutral-400">{user?.phone_number}</p>
 
-                    {/* Bagian ini sekarang hanya menampilkan data tiket */}
                     {tickets.length > 0 ? (
                         <div className="p-4 bg-neutral-700 rounded-lg">
                             <h2 className="text-xl font-semibold mb-2">Pembelian Tiket</h2>
@@ -90,7 +114,6 @@ export default function UserDetail() {
                                         <span className="text-green-400">Diterima</span> : 
                                         <span className="text-yellow-400">Pending</span>}
                                     </p>
-                                    {/* Logika QR Code dihilangkan karena tidak ada di data baru */}
                                 </div>
                             ))}
                         </div>
