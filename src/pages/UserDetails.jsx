@@ -11,6 +11,7 @@ export default function UserDetail() {
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null); // State untuk data pengguna
     const [tickets, setTickets] = useState([]); // State untuk array tiket
+    const [emailStatus, setEmailStatus] = useState(null); // State untuk status pengiriman email
 
     // Mengambil token admin dan parameter email dari URL
     const userToken = useSelector((state) => state.user.user);
@@ -34,7 +35,7 @@ export default function UserDetail() {
             const headers = { "x-auth-token": userToken };
 
             try {
-                // Menggunakan metode POST untuk mengirim email di dalam body request
+                // Menggunakan metode GET untuk mengambil data detail
                 const response = await axios.get(`${API_BASE_URL}/api/user/details-ticket?email=${email}`, { headers });
 
                 // Destructure data dari response tunggal sesuai struktur baru
@@ -78,6 +79,23 @@ export default function UserDetail() {
         }
     };
 
+    // Fungsi untuk mengirim email tiket
+    const sendTicketEmail = async () => {
+        if (!window.confirm(`Apakah Anda yakin ingin mengirim e-ticket ke ${email}?`)) return;
+        
+        setEmailStatus({ loading: true, message: null }); // Mulai proses pengiriman
+        try {
+            const API_BASE_URL = import.meta.env.VITE_API_URL;
+            const headers = { "x-auth-token": userToken };
+            const response = await axios.post(`${API_BASE_URL}/api/email/ticket`, { email }, { headers });
+            setEmailStatus({ loading: false, message: response.data.message || "Email berhasil dikirim!" });
+        } catch (err) {
+            const errorMessage = err.response?.data?.message || "Gagal mengirim email.";
+            setEmailStatus({ loading: false, message: errorMessage });
+            console.error("Gagal mengirim email:", err);
+        }
+    };
+
     if (loading) {
         return <div className="text-center text-neutral-400">Memuat data detail pengguna...</div>;
     }
@@ -94,10 +112,23 @@ export default function UserDetail() {
                         <button onClick={goback} className="bg-neutral-700 py-1 px-5 text-md rounded-xl hover:bg-neutral-600 transition-all">
                             Back
                         </button>
-                        <button onClick={addTicket} className="bg-neutral-700 py-1 px-5 text-md rounded-xl hover:bg-neutral-600 transition-all">
-                            Add Ticket
-                        </button>
+                        <div>
+                            <button onClick={addTicket} className="bg-blue-600 hover:bg-blue-700 py-1 px-5 text-md rounded-xl transition-all mr-4">
+                                Add Ticket
+                            </button>
+                            <button onClick={sendTicketEmail} disabled={emailStatus?.loading} className="bg-green-600 hover:bg-green-700 py-1 px-5 text-md rounded-xl transition-all disabled:bg-gray-500">
+                                {emailStatus?.loading ? 'Sending...' : 'Send Email'}
+                            </button>
+                        </div>
                     </div>
+
+                    {/* Pesan status pengiriman email */}
+                    {emailStatus && emailStatus.message && (
+                        <div className={`p-3 rounded-lg text-center mb-4 ${emailStatus.message.includes("successfully") ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}`}>
+                            {emailStatus.message}
+                        </div>
+                    )}
+
                     <h1 className="text-3xl font-bold text-center mb-2 text-yellow-400">Detail Pengguna</h1>
                     <p className="text-center text-lg mb-2 text-neutral-300">{user?.name}</p>
                     <p className="text-center text-md mb-2 text-neutral-400">{user?.email}</p>
