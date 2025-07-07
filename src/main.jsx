@@ -26,6 +26,8 @@ import Yonkomas from "./pages/Yonkoma.jsx";
 import YonkomaDetails from "./components/YonkomaDetails.jsx";
 import CosplayCompetitions from "./pages/CosplayCompetitions.jsx";
 import CosplayCompetitionDetails from "./components/CosplayCompetitionDetails.jsx";
+import UserList from "./pages/UserList.jsx";
+import UserDetail from "./pages/UserDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
       {
         path: "competitions/coswalk/:instagram",
         element: <CoswalkDetails />,
+      },
+      {
+        path: "user-list",
+        element: <UserList />,
+      },
+      {
+        path: "user/:email",
+        element: <UserDetail />,
       },
       {
         path: "gallery",
