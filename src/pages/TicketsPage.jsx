@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import { useSelector } from 'react-redux';
-// The 'react-redux' import has been removed to resolve the compilation error.
-// You can re-integrate it with your project's Redux store when you use this component.
-
-// You might need 'Link' if you plan to navigate from here
-// import { Link } from "react-router-dom";
 
 // TODO: Replace with your actual backend URL.
 // This base URL will be prepended to the image file paths.
 // It's crucial that this matches the URL where your backend serves static files.
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'; // Fallback for local dev
 
 // This component fetches and displays a combined list of tickets and their transfer proofs.
 export default function TicketsPage() {
@@ -21,9 +16,7 @@ export default function TicketsPage() {
     // State to store any potential errors during the API call
     const [error, setError] = useState(null);
     
-    // To resolve the dependency error, user state is now managed locally.
-    // In your actual application, you can replace this with:
-    // const user = useSelector((state) => state.user.user);
+    // In your actual application, you would get the user from your Redux store.
     const user = useSelector((state) => state.user.user);
 
     // useEffect hook to fetch data when the component is first rendered
@@ -38,7 +31,7 @@ export default function TicketsPage() {
             }
 
             try {
-                // The `import.meta.env` syntax is specific to Vite projects and was causing an error.
+                // The `import.meta.env` syntax is specific to Vite projects.
                 // It has been replaced with a constant defined outside the component.
                 const request = await axios.get(
                     `${API_BASE_URL}/api/ticket/`,
@@ -87,15 +80,17 @@ export default function TicketsPage() {
     // Function to handle updating the status of a transfer proof
     const handleStatusChange = async (ulid, email, newStatus) => {
         try {
-            // Make a PUT request to update the status using the ticket's email.
+            // *** FIX APPLIED HERE ***
+            // The API is now sent the `newStatus` string directly ('valid', 'invalid', 'checking').
+            // This ensures the backend receives the same value the frontend UI uses for styling.
             await axios.put(
-                `${API_BASE_URL}/api/ticket/${email}`, // Updated endpoint using email
-                { status: newStatus ? newStatus === 'valid' : false }, // The body of the request
+                `${API_BASE_URL}/api/ticket/${email}`,
+                { status: newStatus }, // The body of the request now sends the string.
                 { headers: { "x-auth-token": user } }
             );
 
             // On success, update the local state to reflect the change immediately.
-            // We still use the unique 'ulid' to guarantee we update the correct ticket in the UI.
+            // This provides a responsive user experience (optimistic update).
             setTickets(currentTickets =>
                 currentTickets.map(t =>
                     t.ulid === ulid 
@@ -105,8 +100,8 @@ export default function TicketsPage() {
             );
         } catch (err) {
             console.error("Failed to update status:", err);
-            // In a real app, you might show a user-facing notification here.
-            alert(`Failed to update status for ticket ${ulid}.`);
+            // Using alert() is discouraged. A toast notification or an inline error message is better.
+            // For example: setError(`Failed to update ticket ${ulid}. Please try again.`);
         }
     };
 
@@ -153,7 +148,7 @@ export default function TicketsPage() {
                                                             onError={handleImageError}
                                                         />
                                                     </a>
-                                                    <div className={`mt-2 text-xs font-bold uppercase px-2 py-1 rounded-full text-center ${getStatusBadgeClass(ticket.transferProof.status)}`}>
+                                                    <div className={`mt-2 text-xs font-bold uppercase px-2 py-1 rounded-full text-center ${ticket.transferProof.status == "valid"? "bg-green-500 text-white" : ticket.transferProof.status == "invalid" ? "bg-red-500 text-white" : "bg-yellow-500 text-black"} `}>
                                                         {ticket.transferProof.status || 'No Status'}
                                                     </div>
                                                     

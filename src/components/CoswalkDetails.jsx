@@ -64,7 +64,13 @@ export default function CoswalkDetails() {
     // Mendefinisikan fungsi asinkron `changeStatus` untuk mengubah status coswalk di API
     const changeStatus = async () => {
         axios.put(
-            `${import.meta.env.VITE_API_URL}/api/coswalk/${coswalks.instagram}`
+            `${import.meta.env.VITE_API_URL}/api/coswalk/${coswalks.instagram}`,
+            {},
+            {
+            headers: {
+                "x-auth-token": user,
+            },
+            }
         );
         setStatus(!status);
     };

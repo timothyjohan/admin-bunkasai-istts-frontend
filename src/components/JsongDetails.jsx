@@ -65,7 +65,15 @@ export default function JsongDetails() {
     // Mendefinisikan fungsi asinkron `changeStatus` untuk mengubah status jsong
     const changeStatus = async () => {
         // Melakukan request PUT ke API untuk mengubah status jsong
-        axios.put(`${import.meta.env.VITE_API_URL}/api/jsong/${jsongs.telp}`);
+        axios.put(
+            `${import.meta.env.VITE_API_URL}/api/jsong/${jsongs.telp}`,
+            {},
+            {
+            headers: {
+                "x-auth-token": user,
+            },
+            }
+        );
         // Memperbarui state lokal `status`
         setStatus(!status);
     };
