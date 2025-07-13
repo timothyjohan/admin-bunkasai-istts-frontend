@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 import Home from "./pages/Home.jsx";
 import Tenants from "./pages/Tenants.jsx";
+import Scan from "./pages/Scan.jsx";
 import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Competitions from "./pages/Competitions";
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
       {
         path: "tickets",
         element: <TicketsPage />,
+      },
+      {
+        path: "scan",
+        element: <Scan />,
       }
     ],
   },

@@ -62,6 +62,12 @@ export default function Navbar() {
                             <button className="">TICKETS</button>
                         </Link>
                         <Link
+                            to={"scan"}
+                            className="mx-5 text-xl font-bold transition-all hover:scale-110"
+                        >
+                            <button className="">SCAN</button>
+                        </Link>
+                        <Link
                             to={"user-list"}
                             className="mx-5 text-xl font-bold transition-all hover:scale-110"
                         >
