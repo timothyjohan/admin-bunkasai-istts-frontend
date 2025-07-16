@@ -142,7 +142,7 @@ export default function TicketsPage() {
             {/* The main container, centered with a dark background to match your app's theme */}
             <div className="min-h-screen w-full flex items-center justify-center text-neutral-200 p-4 sm:p-6 lg:p-8">
                 {/* This inner container has the semi-transparent background and rounded corners */}
-                <div className="bg-neutral-800 p-6 sm:p-8 md:p-10 bg-opacity-75 rounded-xl w-full max-w-6xl">
+                <div className="bg-neutral-800 p-6 sm:p-8 md:p-10 bg-opacity-75 rounded-xl w-full max-w-6xl my-24">
                     <h1 className="text-3xl lg:text-4xl font-bold text-center mb-8">Ticket Transfer Proofs</h1>
 
                     {/* Display a loading message while data is being fetched */}
